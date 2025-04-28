@@ -26,9 +26,9 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-md">
-      <h1 className="text-2xl font-bold text-[#E6A817] mb-1">Login</h1>
-      <h2 className="text-xl font-bold text-[#0078D7] mb-6">WELCOME BACK!</h2>
+    <div className="w-full max-w-md px-4 sm:px-6 md:px-8 mx-auto">
+      <h1 className="text-2xl font-bold text-[#E6A817] mb-1 text-center sm:text-left">Login</h1>
+      <h2 className="text-xl font-bold text-[#0078D7] mb-6 text-center sm:text-left">WELCOME BACK!</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -38,7 +38,7 @@ export default function LoginForm() {
             placeholder="Enter Your Username / Email"
             value={formData.username}
             onChange={handleChange}
-            className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500"
+            className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500 w-full"
           />
         </div>
 
@@ -49,7 +49,7 @@ export default function LoginForm() {
             placeholder="Enter Your Password"
             value={formData.password}
             onChange={handleChange}
-            className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500 pr-12"
+            className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500 pr-12 w-full"
           />
           <button
             type="button"

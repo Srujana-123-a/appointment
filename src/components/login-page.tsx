@@ -30,10 +30,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex w-full min-h-screen">
+    <div className="flex flex-col md:flex-row w-full min-h-screen">
       {/* Left side - Image */}
       <div className="hidden md:flex md:w-1/2 bg-gray-50 items-center justify-center p-6">
-        <div className="relative w-full max-w-md h-[500px]">
+        <div className="relative w-full max-w-md h-[300px] md:h-[500px]">
           <Image
             src={image1}
             alt="Medical consultation illustration"
@@ -42,15 +42,13 @@ export default function LoginPage() {
             priority
           />
         </div>
-        
       </div>
-      
 
       {/* Right side - Login Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-6">
         <div className="w-full max-w-md">
-          <h1 className="text-2xl font-bold text-[#E6A817] mb-1">Login</h1>
-          <h2 className="text-xl font-bold text-[#0078D7] mb-6">WELCOME BACK!</h2>
+          <h1 className="text-2xl font-bold text-[#E6A817] mb-1 text-center md:text-left">Login</h1>
+          <h2 className="text-xl font-bold text-[#0078D7] mb-6 text-center md:text-left">WELCOME BACK!</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -60,7 +58,7 @@ export default function LoginPage() {
                 placeholder="Enter Your Username / Email"
                 value={formData.username}
                 onChange={handleChange}
-                className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500"
+                className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500 w-full"
               />
             </div>
 
@@ -71,7 +69,7 @@ export default function LoginPage() {
                 placeholder="Enter Your Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500 pr-12"
+                className="h-14 rounded-md border border-gray-300 px-4 text-gray-600 placeholder:text-gray-500 pr-12 w-full"
               />
               <button
                 type="button"
@@ -90,7 +88,6 @@ export default function LoginPage() {
             </Button>
           </form>
         </div>
-        
       </div>
     </div>
   )
