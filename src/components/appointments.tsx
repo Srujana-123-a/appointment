@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, Clock, Users, LogOut, Plus, ChevronDown, ChevronRight, X, Check } from "lucide-react"
+import { Calendar, Plus, ChevronDown, ChevronRight, X, Check } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
+import Sidebar from "@/components/sidebar"
 
 export default function Dashboard() {
   // State for prototype functionality
@@ -120,37 +120,8 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-blue-500 text-white p-4 flex flex-col">
-        <div className="text-2xl font-bold mb-8">MyMedic</div>
-
-        <nav className="space-y-2 flex-1">
-          <Link href="/dashboard" className="flex items-center gap-3 p-3 rounded-md hover:bg-blue-600">
-            <Calendar className="h-5 w-5" />
-            <span>Dashboard</span>
-          </Link>
-
-          <Link href="/appointments" className="flex items-center gap-3 p-3 rounded-md bg-blue-600">
-            <Clock className="h-5 w-5" />
-            <span>Appointments</span>
-          </Link>
-
-          <Link href="schedule" className="flex items-center gap-3 p-3 rounded-md hover:bg-blue-600">
-            <Calendar className="h-5 w-5" />
-            <span>Your Schedule</span>
-          </Link>
-
-          <Link href="patients" className="flex items-center gap-3 p-3 rounded-md hover:bg-blue-600">
-            <Users className="h-5 w-5" />
-            <span>Patients Data</span>
-          </Link>
-        </nav>
-
-        <Link href="#" className="flex items-center gap-3 p-3 rounded-md hover:bg-blue-600 mt-auto">
-          <LogOut className="h-5 w-5" />
-          <span>Log Out</span>
-        </Link>
-      </aside>
+      {/* Reusable Sidebar Component */}
+      <Sidebar />
 
       {/* Main Content */}
       <main className="flex-1 p-4 md:p-8">

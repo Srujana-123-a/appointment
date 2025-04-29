@@ -1,58 +1,16 @@
 "use client"
 
-import { LayoutDashboard, Calendar, Clock, Users, LogOut, ChevronRight, UserCircle2 } from 'lucide-react'
+import { UserCircle2, ChevronRight, Users, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
+import Sidebar from "@/components/sidebar"
 
 export default function DashboardPage() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
-      {/* Sidebar */}
-      <div className="w-full md:w-60 bg-[#0078D7] text-white flex flex-col">
-        <div className="p-4 md:p-6">
-          <h1 className="text-xl md:text-2xl font-bold">MyMedic</h1>
-        </div>
-        <nav className="flex-1 px-2 md:px-3 py-2 space-y-1">
-          <Link
-            href="/dashboard"
-            className="flex items-center px-3 md:px-4 py-2 md:py-3 text-sm font-medium rounded-md bg-[#0067be] text-white"
-          >
-            <LayoutDashboard className="mr-2 md:mr-3 h-5 w-5" />
-            Dashboard
-          </Link>
-          <Link
-            href="/appointments"
-            className="flex items-center px-3 md:px-4 py-2 md:py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <Calendar className="mr-2 md:mr-3 h-5 w-5" />
-            Appointments
-          </Link>
-          <Link
-            href="/schedule"
-            className="flex items-center px-3 md:px-4 py-2 md:py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <Clock className="mr-2 md:mr-3 h-5 w-5" />
-            Your Schedule
-          </Link>
-          <Link
-            href="/patients"
-            className="flex items-center px-3 md:px-4 py-2 md:py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <Users className="mr-2 md:mr-3 h-5 w-5" />
-            Patients Data
-          </Link>
-        </nav>
-        <div className="p-2 md:p-3">
-          <Link
-            href="/"
-            className="flex items-center px-3 md:px-4 py-2 md:py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <LogOut className="mr-2 md:mr-3 h-5 w-5" />
-            Log Out
-          </Link>
-        </div>
-      </div>
+      {/* Reusable Sidebar Component */}
+      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 overflow-auto">
@@ -124,7 +82,9 @@ export default function DashboardPage() {
             {/* Appointments Table */}
             <Card className="border rounded-lg shadow-sm">
               <CardHeader className="pb-0">
-                <CardTitle className="text-lg md:text-xl font-bold text-[#0A2540]">Appointments booked for tomorrow</CardTitle>
+                <CardTitle className="text-lg md:text-xl font-bold text-[#0A2540]">
+                  Appointments booked for tomorrow
+                </CardTitle>
               </CardHeader>
               <CardContent className="p-4 md:p-6">
                 <div className="overflow-x-auto">

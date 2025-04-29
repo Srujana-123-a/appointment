@@ -1,57 +1,14 @@
 "use client"
 
-import { LayoutDashboard, Calendar, Clock, Users, LogOut, UserCircle2, Edit, Plus, ChevronDown } from "lucide-react"
+import { UserCircle2, Edit, Plus, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import Sidebar from "@/components/sidebar"
 
 export default function SchedulePage() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
-      {/* Sidebar */}
-      <div className="w-full md:w-60 bg-[#0078D7] text-white flex flex-col">
-        <div className="p-6">
-          <h1 className="text-2xl font-bold">MyMedic</h1>
-        </div>
-        <nav className="flex-1 px-3 py-2 space-y-1">
-          <Link
-            href="/dashboard"
-            className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <LayoutDashboard className="mr-3 h-5 w-5" />
-            Dashboard
-          </Link>
-          <Link
-            href="/appointments"
-            className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <Calendar className="mr-3 h-5 w-5" />
-            Appointments
-          </Link>
-          <Link
-            href="/schedule"
-            className="flex items-center px-4 py-3 text-sm font-medium rounded-md bg-[#0067be] text-white"
-          >
-            <Clock className="mr-3 h-5 w-5" />
-            Your Schedule
-          </Link>
-          <Link
-            href="/patients"
-            className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <Users className="mr-3 h-5 w-5" />
-            Patients Data
-          </Link>
-        </nav>
-        <div className="p-3">
-          <Link
-            href="/"
-            className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]"
-          >
-            <LogOut className="mr-3 h-5 w-5" />
-            Log Out
-          </Link>
-        </div>
-      </div>
+      {/* Reusable Sidebar Component */}
+      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 overflow-auto bg-gray-50">
@@ -90,7 +47,10 @@ export default function SchedulePage() {
                 <div className="flex-1 p-4 border border-gray-200 rounded-md bg-white w-full">
                   Monday - Saturday | 10 AM - 12 PM
                 </div>
-                <Button size="icon" className="ml-0 md:ml-3 mt-2 md:mt-0 h-10 w-10 rounded-full bg-[#0078D7] hover:bg-[#0067be] text-white">
+                <Button
+                  size="icon"
+                  className="ml-0 md:ml-3 mt-2 md:mt-0 h-10 w-10 rounded-full bg-[#0078D7] hover:bg-[#0067be] text-white"
+                >
                   <Edit className="h-4 w-4" />
                 </Button>
               </div>
@@ -100,7 +60,10 @@ export default function SchedulePage() {
                 <div className="flex-1 p-4 border border-gray-200 rounded-md bg-white w-full">
                   Monday - Saturday | 06 PM - 09 PM
                 </div>
-                <Button size="icon" className="ml-0 md:ml-3 mt-2 md:mt-0 h-10 w-10 rounded-full bg-[#0078D7] hover:bg-[#0067be] text-white">
+                <Button
+                  size="icon"
+                  className="ml-0 md:ml-3 mt-2 md:mt-0 h-10 w-10 rounded-full bg-[#0078D7] hover:bg-[#0067be] text-white"
+                >
                   <Edit className="h-4 w-4" />
                 </Button>
               </div>

@@ -1,54 +1,82 @@
 "use client"
 
-import { LayoutDashboard, Calendar, Clock, Users, LogOut, UserCircle2, Search, ChevronDown, Plus } from 'lucide-react'
+import { UserCircle2, Search, ChevronDown, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import Image from "next/image"
+import Sidebar from "@/components/sidebar"
 
 export default function PatientsPage() {
   const patients = [
-    { id: "#23", name: "Namin Sein", age: 23, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
-    { id: "#453", name: "Namin Sein", age: 35, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
-    { id: "#1092", name: "Namin Sein", age: 44, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
-    { id: "#7823", name: "Namin Sein", age: 28, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
-    { id: "#35", name: "Namin Sein", age: 67, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
-    { id: "#899", name: "Namin Sein", age: 13, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
-    { id: "#189", name: "Namin Sein", age: 55, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
-    { id: "#12", name: "Namin Sein", age: 43, phone: "+ 91 89129 8399", gender: "Female", image: "/placeholder.svg?height=40&width=40" },
+    {
+      id: "#23",
+      name: "Namin Sein",
+      age: 23,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
+    {
+      id: "#453",
+      name: "Namin Sein",
+      age: 35,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
+    {
+      id: "#1092",
+      name: "Namin Sein",
+      age: 44,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
+    {
+      id: "#7823",
+      name: "Namin Sein",
+      age: 28,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
+    {
+      id: "#35",
+      name: "Namin Sein",
+      age: 67,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
+    {
+      id: "#899",
+      name: "Namin Sein",
+      age: 13,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
+    {
+      id: "#189",
+      name: "Namin Sein",
+      age: 55,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
+    {
+      id: "#12",
+      name: "Namin Sein",
+      age: 43,
+      phone: "+ 91 89129 8399",
+      gender: "Female",
+      image: "/placeholder.svg?height=40&width=40",
+    },
   ]
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
-      {/* Sidebar */}
-      <div className="w-full md:w-60 bg-[#0078D7] text-white flex flex-col">
-        <div className="p-6">
-          <h1 className="text-2xl font-bold">MyMedic</h1>
-        </div>
-        <nav className="flex-1 px-3 py-2 space-y-1">
-          <Link href="/dashboard" className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]">
-            <LayoutDashboard className="mr-3 h-5 w-5" />
-            Dashboard
-          </Link>
-          <Link href="/appointments" className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]">
-            <Calendar className="mr-3 h-5 w-5" />
-            Appointments
-          </Link>
-          <Link href="/schedule" className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]">
-            <Clock className="mr-3 h-5 w-5" />
-            Your Schedule
-          </Link>
-          <Link href="/patients" className="flex items-center px-4 py-3 text-sm font-medium rounded-md bg-[#0067be] text-white">
-            <Users className="mr-3 h-5 w-5" />
-            Patients Data
-          </Link>
-        </nav>
-        <div className="p-3">
-          <Link href="/" className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white hover:bg-[#0067be]">
-            <LogOut className="mr-3 h-5 w-5" />
-            Log Out
-          </Link>
-        </div>
-      </div>
+      {/* Reusable Sidebar Component */}
+      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 overflow-auto bg-white">
@@ -85,9 +113,7 @@ export default function PatientsPage() {
                   placeholder="Type Here..."
                   className="h-10 px-4 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0078D7] focus:border-transparent rounded-l-none w-full md:w-[300px]"
                 />
-                <Button
-                  className="absolute right-0 top-0 h-10 w-10 bg-[#0078D7] hover:bg-[#0067be] rounded-l-none"
-                >
+                <Button className="absolute right-0 top-0 h-10 w-10 bg-[#0078D7] hover:bg-[#0067be] rounded-l-none">
                   <Search className="h-4 w-4 text-white" />
                 </Button>
               </div>
@@ -138,9 +164,7 @@ export default function PatientsPage() {
                   <td className="py-3 px-4">{patient.phone}</td>
                   <td className="py-3 px-4">{patient.gender}</td>
                   <td className="py-3 px-4">
-                    <Button className="bg-[#FFC107] hover:bg-[#e6af06] text-black text-xs px-4">
-                      View Profile
-                    </Button>
+                    <Button className="bg-[#FFC107] hover:bg-[#e6af06] text-black text-xs px-4">View Profile</Button>
                   </td>
                 </tr>
               ))}
