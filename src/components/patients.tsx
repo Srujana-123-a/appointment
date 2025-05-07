@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { UserCircle2, Search, ChevronDown, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
@@ -39,7 +39,7 @@ export default function PatientsPage() {
 
   const [patientList, setPatientList] = useState(initialPatients)
   const [newPatient, setNewPatient] = useState({
-    id: `#${Math.floor(Math.random() * 10000)}`,
+    id: "",
     name: "",
     age: "",
     phone: "",
@@ -47,7 +47,17 @@ export default function PatientsPage() {
     image: "/placeholder.svg",
   })
 
+  // Set random ID only on client
+  useEffect(() => {
+    setNewPatient((prev) => ({
+      ...prev,
+      id: `#${Math.floor(Math.random() * 10000)}`
+    }))
+  }, [isDialogOpen])
+
   const handleAddPatient = () => {
+    if (!Array.isArray(patientList)) return
+
     setPatientList([...patientList, newPatient])
     setNewPatient({
       id: `#${Math.floor(Math.random() * 10000)}`,
@@ -60,14 +70,13 @@ export default function PatientsPage() {
     setIsDialogOpen(false)
   }
 
-  const filteredPatients = patientList.filter((p) =>
+  const filteredPatients = patientList?.filter((p) =>
     p.name.toLowerCase().includes(query.toLowerCase()) || p.id.includes(query)
   )
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
       <Sidebar />
-
       <div className="flex-1 overflow-auto bg-white">
         <header className="flex flex-col md:flex-row justify-between items-center p-6 space-y-4 md:space-y-0">
           <h1 className="text-2xl font-bold text-[#0A2540]">Patients Data</h1>
@@ -203,7 +212,7 @@ export default function PatientsPage() {
               </tr>
             </thead>
             <tbody>
-              {filteredPatients.map((patient, index) => (
+              {filteredPatients?.map((patient, index) => (
                 <tr key={patient.id} className={index % 2 === 0 ? "bg-[#E5EEF6]" : "bg-white"}>
                   <td className="py-3 px-4">{patient.id}</td>
                   <td className="py-3 px-4 flex justify-center">
