@@ -47,7 +47,6 @@ export default function PatientsPage() {
     image: "/placeholder.svg",
   })
 
-  // Set random ID only on client
   useEffect(() => {
     setNewPatient((prev) => ({
       ...prev,
@@ -58,7 +57,12 @@ export default function PatientsPage() {
   const handleAddPatient = () => {
     if (!Array.isArray(patientList)) return
 
-    setPatientList([...patientList, newPatient])
+    const formattedPatient = {
+      ...newPatient,
+      age: Number(newPatient.age), // ✅ Ensure age is number
+    }
+
+    setPatientList([...patientList, formattedPatient])
     setNewPatient({
       id: `#${Math.floor(Math.random() * 10000)}`,
       name: "",
