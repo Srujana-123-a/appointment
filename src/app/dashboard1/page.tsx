@@ -1,34 +1,42 @@
-'use client';
+"use client"
 
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { CalendarIcon, UserIcon } from 'lucide-react';
-import Link from 'next/link';
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
+import { CalendarIcon, UserIcon } from "lucide-react"
+import Link from "next/link"
+import Sidebar from "@/components/sidebar"
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+
+
 
 const data = [
-  { year: '2018', patients: 999 },
-  { year: '2019', patients: 1750 },
-  { year: '2020', patients: 1730 },
-  { year: '2021', patients: 950 },
-  { year: '2022', patients: 1120 },
-  { year: '2023', patients: 470 },
-];
+  { year: "2018", patients: 999 },
+  { year: "2019", patients: 1750 },
+  { year: "2020", patients: 1730 },
+  { year: "2021", patients: 950 },
+  { year: "2022", patients: 1120 },
+  { year: "2023", patients: 470 },
+  
+]
+
 
 export default function Dashboard() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
-      {/* Sidebar */}
-      <div className="w-full md:w-64 bg-blue-600 text-white p-4 space-y-6">
-        <h1 className="text-2xl font-bold">MyMedic</h1>
-        <nav className="space-y-3">
-          <button className="bg-blue-500 w-full py-2 rounded-md text-left px-4">Dashboard</button>
-          <button className="hover:bg-blue-500 w-full py-2 rounded-md text-left px-4">Appointments</button>
-          <button className="hover:bg-blue-500 w-full py-2 rounded-md text-left px-4">Your Schedule</button>
-          <button className="hover:bg-blue-500 w-full py-2 rounded-md text-left px-4">Patients Data</button>
-          <button className="hover:bg-blue-500 w-full py-2 rounded-md text-left px-4">Log Out</button>
-        </nav>
-      </div>
+      {/* Use the reusable Sidebar component */}
+      <Sidebar />
 
       {/* Main content */}
       <div className="flex-1 bg-[#f6f9fc] p-4 sm:p-6 md:p-8">
@@ -136,5 +144,5 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
-  );
+  )
 }

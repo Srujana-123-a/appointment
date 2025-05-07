@@ -1,12 +1,32 @@
 "use client"
 
-import { UserCircle2, ChevronRight, Users, Calendar } from "lucide-react"
+import { useState } from "react"
+import { UserCircle2, ChevronRight, Users, Calendar, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import Sidebar from "@/components/sidebar"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 
 export default function DashboardPage() {
+  const [selectedDay, setSelectedDay] = useState<string | null>(null)
+  const [delay, setDelay] = useState("")
+const [shift, setShift] = useState("")
+const [message, setMessage] = useState("Dear client,\n\nDue to unforseen circumstances, I would be running in a delay of 15 mins today in my morning shift. Please plan accordingly.")
+
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
       {/* Reusable Sidebar Component */}
@@ -22,12 +42,53 @@ export default function DashboardPage() {
               <Button className="w-full md:w-auto bg-[#0078D7] hover:bg-[#0067be] text-white">
                 <Link href="/dashboard1">Available now? Click here</Link>
               </Button>
-              <Button
-                variant="outline"
-                className="w-full md:w-auto bg-[#E5EEF6] text-[#0A2540] border-[#E5EEF6] hover:bg-[#d8e6f3] hover:text-[#0A2540] hover:border-[#d8e6f3]"
-              >
-                Notify Delay
-              </Button>
+              <Dialog>
+  <DialogTrigger asChild>
+    <Button
+      variant="outline"
+      className="w-full md:w-auto bg-[#E5EEF6] text-[#0A2540] border-[#E5EEF6] hover:bg-[#d8e6f3] hover:text-[#0A2540] hover:border-[#d8e6f3]"
+    >
+      Notify Delay
+    </Button>
+  </DialogTrigger>
+  <DialogContent className="max-w-md rounded-xl">
+    <DialogHeader>
+      <DialogTitle className="text-[#0A2540] text-xl">Notify Delay</DialogTitle>
+    </DialogHeader>
+    <div className="space-y-4">
+      <div>
+        <Label>Delayed by</Label>
+        <Input value={delay} onChange={(e) => setDelay(e.target.value)} placeholder="e.g. 15 mins" />
+      </div>
+      <div>
+        <Label>Which Shift</Label>
+        <Select onValueChange={setShift}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select Shift" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="morning">Morning</SelectItem>
+            <SelectItem value="afternoon">Afternoon</SelectItem>
+            <SelectItem value="evening">Evening</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div>
+        <Label>Message</Label>
+        <Textarea
+          rows={5}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+      </div>
+    </div>
+    <DialogFooter>
+      <Button className="bg-[#D49F20] hover:bg-[#c89114] text-white mt-4 w-full">
+        Send to patients
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
             </div>
             <div className="flex items-center space-x-3">
               <div className="text-right">
@@ -72,7 +133,23 @@ export default function DashboardPage() {
             <Card className="border rounded-lg shadow-sm">
               <CardContent className="p-4 md:p-6">
                 <p className="text-sm font-medium text-gray-500 mb-2">No upcoming leave in 7 days</p>
-                <Button className="w-full bg-[#E5EEF6] text-[#0A2540] hover:bg-[#d8e6f3]">Apply for leave</Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button className="w-full bg-[#E5EEF6] text-[#0A2540] hover:bg-[#d8e6f3] justify-between">
+                      {selectedDay || "Apply for leave"}
+                      <ChevronDown className="h-4 w-4 ml-2" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-full min-w-[200px]">
+                    <DropdownMenuItem onClick={() => setSelectedDay("Monday")}>Monday</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedDay("Tuesday")}>Tuesday</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedDay("Wednesday")}>Wednesday</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedDay("Thursday")}>Thursday</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedDay("Friday")}>Friday</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedDay("Saturday")}>Saturday</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedDay("Sunday")}>Sunday</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </CardContent>
             </Card>
           </div>
